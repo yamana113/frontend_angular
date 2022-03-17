@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="mb-3">
+    <label for="UsernameInput" class="form-label">Username</label>
+    <input type="text" class="form-control" id="UsernameInput" [(ngModel)]="login">
+  </div>
+  <div class="mb-3">
+    <label for="PasswordInput" class="form-label">Password</label>
+    <input type="text" class="form-control" id="PasswordInput" [(ngModel)]="password">
+  </div>
+  <div class="mb-3">
+    <input type="submit" class="form-control" (click)="getData()">
+  </div>
+
+  <div *ngIf="errorMessage.length > 0" class="alert alert-danger" role="alert">
+    {{errorMessage}}
+  </div>
+</div>

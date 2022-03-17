@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Create New Topic</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Topic name</mat-label>
+    <input matInput [(ngModel)]="data.nom">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.nom" cdkFocusInitial>Ok</button>
+</div>
