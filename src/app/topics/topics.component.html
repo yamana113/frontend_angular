@@ -6,7 +6,7 @@
   </ol>
 </nav>
 
-<app-create-topic></app-create-topic>
+<app-create-topic [idcour]="idcour" (newTopic)="onNewTopic($event)"></app-create-topic>
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">

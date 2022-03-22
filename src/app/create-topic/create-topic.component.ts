@@ -1,9 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CreateTopicDialogComponent} from "../create-topic-dialog/create-topic-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {Topicdata} from "../interfaces/topicdata";
 
 export interface DialogData {
-  nom : string
+  nom : string,
+  idcour : number
 }
 
 @Component({
@@ -13,7 +15,8 @@ export interface DialogData {
 })
 export class CreateTopicComponent implements OnInit {
   nom !: string;
-  @Input() idcour !: number;
+  @Input() idcour !: string | null;
+  @Output() newTopic = new EventEmitter<Topicdata>();
 
   constructor(public dialog: MatDialog) { }
 
@@ -26,12 +29,17 @@ export class CreateTopicComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateTopicDialogComponent, {
       width: '50%',
-      data: {nom: this.nom},
+      data: {nom: this.nom, idcour: this.idcour},
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.nom = result;
+      console.log(result)
+      if(result["state"] === "success") {
+        const Topic = result["data"];
+        this.newTopic.emit(Topic);
+        this.nom = result["data"]["nom"];
+      }
     });
   }
 }

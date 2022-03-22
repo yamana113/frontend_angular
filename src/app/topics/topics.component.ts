@@ -48,6 +48,12 @@ export class TopicsComponent implements OnInit {
     )
   }
 
+  onNewTopic(Topic: Topicdata) {
+    const data = this.dataSource.data;
+    data.push(Topic);
+    this.dataSource.data = data;
+  }
+
   /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
     // This example uses English messages. If your application supports

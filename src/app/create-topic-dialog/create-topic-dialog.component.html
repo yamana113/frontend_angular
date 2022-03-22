@@ -5,7 +5,10 @@
     <input matInput [(ngModel)]="data.nom">
   </mat-form-field>
 </div>
+<div *ngIf="errorMessage.length > 0" class="alert alert-danger" role="alert">
+  {{errorMessage}}
+</div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.nom" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="onOk()" [mat-dialog-close]="data.nom" cdkFocusInitial>Ok</button>
 </div>

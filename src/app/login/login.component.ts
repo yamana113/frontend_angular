@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {MessageService} from "../message/message.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   login : string = "";
   password : string = "";
 
-  constructor(private message : MessageService, private router : Router) { }
+  constructor(private auth : AuthService, private router : Router) { }
 
   ngOnInit(): void {
   }
@@ -38,15 +38,21 @@ export class LoginComponent implements OnInit {
    * envoie données dans checkLogin
    */
   sendCheckLogin(){
-    this.message.sendMessage("checkLogin", {password : this.password, login : this.login}).subscribe(
+    this.auth.sendAuthentication(this.login, this.password).subscribe(
       res => {
-        console.log({res});
+        this.auth.finalizeAuthentication(res);
+        if (this.auth.isConnected) this.router.navigateByUrl('cours');
+        else {
+          this.errorMessage = res["data"]["reason"];
+          console.log("error : ", this.errorMessage);
+        }
+        /*console.log({res});
         if (res["status"] === "error") {
           console.log("error");
           this.errorMessage = res["data"]["reason"];
           console.log(this.errorMessage);
         }
-        else this.router.navigateByUrl('cours');
+        else this.router.navigateByUrl('cours');*/
       }
     );
   }
