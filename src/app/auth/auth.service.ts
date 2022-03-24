@@ -26,6 +26,6 @@ export class AuthService {
    * @param data
    */
   finalizeAuthentication(data: PHPData): void {
-    this.isConnected = data["status"] === "ok";
+    this.isConnected = (data["status"] === "ok");
   }
 }

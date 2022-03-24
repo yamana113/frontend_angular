@@ -46,13 +46,6 @@ export class LoginComponent implements OnInit {
           this.errorMessage = res["data"]["reason"];
           console.log("error : ", this.errorMessage);
         }
-        /*console.log({res});
-        if (res["status"] === "error") {
-          console.log("error");
-          this.errorMessage = res["data"]["reason"];
-          console.log(this.errorMessage);
-        }
-        else this.router.navigateByUrl('cours');*/
       }
     );
   }
