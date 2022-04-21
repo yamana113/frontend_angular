@@ -17,13 +17,13 @@ export class MessageService {
    * @param data données à envoyé au backend
    */
   sendMessage(url : string, data : any) : Observable<PHPData> {
-    const trueUrl = environment.DATA_URL.concat(url, ".php");
-    // console.log({trueUrl});
+    const trueUrl = environment.DATA_URL.concat(url);
+    console.log({trueUrl});
 
-    let form = new FormData();
+    /*let form = new FormData();
     for (const key in data) {
       form.append(key, data[key])
-    }
-    return this.http.post<PHPData>(trueUrl, form, {withCredentials: true});
+    }*/
+    return this.http.post<PHPData>(trueUrl, data, {withCredentials: true});
   }
 }

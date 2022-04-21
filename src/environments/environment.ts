@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  DATA_URL: "http://127.0.0.1:8080/forum_angular_php/backend/PHP/"
+  DATA_URL: "http://127.0.0.1:3000/"
 };
 
 /*

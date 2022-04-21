@@ -7,7 +7,7 @@ import {PHPData} from "../interfaces/phpdata";
   providedIn: 'root'
 })
 export class AuthService {
-  isConnected: boolean = false;
+  isConnected: boolean = true;
 
   constructor(private message: MessageService) { }
 
